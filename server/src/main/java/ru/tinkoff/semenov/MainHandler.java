@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 @Sharable
 public class MainHandler extends SimpleChannelInboundHandler<String> {
 
-    public static final String SEPARATOR = "\\|";
+    public static final String SEPARATOR = "|";
     private static final String PATH_TO_AUTH_DATA = "server/src/main/resources/users.txt";
     private static final String PATH_TO_USERS_DATA ="server/src/main/resources/dirs";
     private static final Map<Channel, String> channels = new HashMap<>();

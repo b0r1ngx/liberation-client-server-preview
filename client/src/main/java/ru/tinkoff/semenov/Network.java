@@ -72,7 +72,12 @@ public class Network {
     }
 
     public void authorize(String login, String password) {
-        channel.writeAndFlush(Command.AUTH.name() + SEPARATOR + login.length() + login + password);
+        channel.writeAndFlush(
+                Command.AUTH.name()
+                        + SEPARATOR
+                        + login.length()
+                        + login + password
+        );
     }
 
     public void cutFile(String file, String destination) {

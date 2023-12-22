@@ -66,7 +66,10 @@ public class AuthController implements Initializable {
     @FXML
     private void onAuthorize() {
         network.getDefaultHandler().setAction(authAction);
-        network.authorize(nicknameField.getText().trim(), passwordField.getText().trim());
+        network.authorize(
+                nicknameField.getText().trim(),
+                passwordField.getText().trim()
+        );
     }
 
     @FXML
@@ -116,7 +119,7 @@ public class AuthController implements Initializable {
         continueButton.setTextFill(Color.GREEN);
         continueButton.setVisible(true);
         continueButton.setOnAction(event ->
-            showCatalogStage(rooms)
+                showCatalogStage(rooms)
         );
     }
 
@@ -154,7 +157,7 @@ public class AuthController implements Initializable {
             stage.setScene(catalog);
             ((Stage) continueButton.getScene().getWindow()).close();
             stage.setOnCloseRequest(event ->
-                network.close()
+                    network.close()
             );
             stage.show();
         } catch (IOException e) {
