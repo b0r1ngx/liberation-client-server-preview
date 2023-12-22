@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ru.tinkoff.semenov.controllers.CatalogController">
+    <HBox spacing="10">
+        <TextField fx:id="currentPath" editable="false" HBox.hgrow="ALWAYS" focusTraversable="false"/>
+    </HBox>
+    <ListView fx:id="filesList" />
+    <HBox>
+        <Button onAction="#createRoom" text="Создать комнату" prefHeight="26.0" prefWidth="188.0"/>
+    </HBox>
+</VBox>
