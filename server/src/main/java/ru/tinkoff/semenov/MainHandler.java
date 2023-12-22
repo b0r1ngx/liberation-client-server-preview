@@ -26,7 +26,7 @@ public class MainHandler extends SimpleChannelInboundHandler<String> {
 
     public static final String SEPARATOR = "|";
     private static final String PATH_TO_AUTH_DATA = "server/src/main/resources/users.txt";
-    private static final String PATH_TO_USERS_DATA ="server/src/main/resources/dirs";
+    private static final String PATH_TO_USERS_DATA = "server/src/main/resources/dirs";
     private static final Map<Channel, String> channels = new HashMap<>();
     private static final Map<String, ServerRoomHandler> rooms = new HashMap<>();
 
@@ -70,9 +70,17 @@ public class MainHandler extends SimpleChannelInboundHandler<String> {
         Path filePath = Paths.get(PATH_TO_AUTH_DATA);
         try (Stream<String> lines = Files.lines(filePath)) {
             users.clear();
-            users.putAll(lines.collect(Collectors.toMap(k -> k.split("\\s")[0], v -> v.split("\\s")[1])));
+            users.putAll(lines.collect(
+                    Collectors.toMap(
+                            k -> k.split("\\s")[0],
+                            v -> v.split("\\s")[1]
+                    )
+            ));
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось прочитать файл: " + PATH_TO_AUTH_DATA, e);
+            throw new RuntimeException(
+                    "Не удалось прочитать файл: " + PATH_TO_AUTH_DATA,
+                    e
+            );
         }
     }
 

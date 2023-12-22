@@ -10,6 +10,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 public class ServerApp {
 
@@ -31,7 +33,9 @@ public class ServerApp {
                             pipeline.addLast("stringEncoder", new StringEncoder());
                             pipeline.addLast("defaultHandler", new MainHandler());
                         }
-                    });
+                    })
+                    .handler(new LoggingHandler(LogLevel.INFO))
+            ;
             ChannelFuture future = bootstrap.bind(HOST, PORT).sync();
             future.channel().closeFuture().sync();
         } catch (Exception e) {

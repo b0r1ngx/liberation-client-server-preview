@@ -29,4 +29,8 @@ public class RoomController {
     private void buttonPressed(ActionEvent event) {
         network.buttonPressed(firstPlayer.getText());
     }
+
+    public void sendSkipTurn() {
+        network.skipTurn();
+    }
 }

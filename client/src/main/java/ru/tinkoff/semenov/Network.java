@@ -11,10 +11,13 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedFile;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import ru.tinkoff.semenov.controllers.RoomController;
 import ru.tinkoff.semenov.enums.Command;
+import ru.tinkoff.semenov.enums.GameCommand;
 
 /**
  * Основной класс сетевого взаимодействия с сервером. Здесь настраивается соединение, устанавливаются
@@ -55,6 +58,7 @@ public class Network {
                                 pipeline.addLast("defaultHandler", defaultHandler);
                             }
                         });
+//                        .handler(new LoggingHandler(LogLevel.INFO));
                 ChannelFuture future = bootstrap.connect(HOST, PORT).sync();
                 future.channel().closeFuture().sync();
             } catch (Exception e) {
@@ -145,6 +149,10 @@ public class Network {
     }
 
     public void buttonPressed(String nickname) {
-        channel.writeAndFlush("button pressed by" + nickname);
+        channel.writeAndFlush("button pressed by " + nickname);
+    }
+
+    public void skipTurn() {
+        channel.writeAndFlush(GameCommand.SKIP.name());
     }
 }

@@ -31,6 +31,9 @@ public class AuthCommand implements Command {
     }
 
     private void putNewUserChannel(String nickname) {
-        MainHandler.getChannels().put(mainHandler.getContext().channel(), nickname);
+        MainHandler.getChannels().put(
+                mainHandler.getContext().channel(),
+                nickname
+        );
     }
 }

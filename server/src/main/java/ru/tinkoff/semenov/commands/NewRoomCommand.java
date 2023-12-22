@@ -1,12 +1,10 @@
 package ru.tinkoff.semenov.commands;
 
 import ru.tinkoff.semenov.MainHandler;
-import ru.tinkoff.semenov.PlayerData;
+import ru.tinkoff.semenov.Player;
 import ru.tinkoff.semenov.Response;
 import io.netty.channel.Channel;
 import ru.tinkoff.semenov.ServerRoomHandler;
-
-import java.util.stream.Collectors;
 
 public class NewRoomCommand implements Command {
 
@@ -29,7 +27,7 @@ public class NewRoomCommand implements Command {
 
     private void swapHandlerToRoomHandler(String roomName, String nickname) {
         Channel playerChannel = getPlayerChannel(nickname);
-        ServerRoomHandler roomHandler =  new ServerRoomHandler(roomName, new PlayerData(nickname, playerChannel, firstPlayerHandler));
+        ServerRoomHandler roomHandler =  new ServerRoomHandler(roomName, new Player(nickname, playerChannel, firstPlayerHandler));
         firstPlayerHandler.getContext().channel().pipeline().replace(
                 "defaultHandler",
                 "roomHandler",

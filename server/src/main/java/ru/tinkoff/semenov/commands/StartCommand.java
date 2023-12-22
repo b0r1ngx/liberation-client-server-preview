@@ -11,7 +11,7 @@ public class StartCommand implements Command {
 
     @Override
     public String execute(String args) {
-        serverRoomHandler.getFirstPlayer().playerChannel().writeAndFlush("ENEMY_CONNECTED" + ARGS_SEPARATOR + args);
+        serverRoomHandler.getFirstPlayer().channel().writeAndFlush("ENEMY_CONNECTED" + ARGS_SEPARATOR + args);
         return "";
     }
 }

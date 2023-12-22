@@ -2,7 +2,7 @@ package ru.tinkoff.semenov.commands;
 
 import io.netty.channel.Channel;
 import ru.tinkoff.semenov.MainHandler;
-import ru.tinkoff.semenov.PlayerData;
+import ru.tinkoff.semenov.Player;
 import ru.tinkoff.semenov.Response;
 import ru.tinkoff.semenov.ServerRoomHandler;
 
@@ -25,7 +25,7 @@ public class ConnectCommand implements Command {
         ServerRoomHandler roomHandler = rooms.get(roomName);
         if (roomHandler != null) {
             Channel playerChannel = getPlayerChannel(nickname);
-            roomHandler.setSecondPlayer(new PlayerData(nickname, playerChannel, secondPlayerHandler));
+            roomHandler.setSecondPlayer(new Player(nickname, playerChannel, secondPlayerHandler));
             swapHandlerToRoomHandler(roomHandler);
             for (Channel channel : MainHandler.getChannels().keySet()) {
                 if (MainHandler.getChannels().get(channel).equals(nickname)) continue;  // Пропускаем подключившегося
